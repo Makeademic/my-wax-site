@@ -1,0 +1,111 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/tcontentsstyle.css">
+      
+</head>
+
+   <title>{{page.name}}</title>
+
+<body>
+{% include navbar.html  %}
+<div class="tcontents">
+<p><a href="{{site.baseurl}}/contentindex.html"><  &nbsp; back to index</a></p>
+<h1 class="tcontents-title">{{page.name}}</h1>
+<div class="toc-container">
+  <div class="left">
+
+{% for issues_hash in site.data.issues %}
+  {% assign issues = issues_hash[1] %}
+   {% for poem in issues %}
+<!--          look in the language spreadsheet
+ -->    
+{% assign authors = poem.author | split: '; ' %} 
+{% assign translators = poem.translator | split: '; ' %} 
+{% assign languages = poem.language | split: '; ' %} 
+
+
+        {% if page.type == "language" %}
+          {% for lang in languages %}
+            {% if lang == page.name %}
+              {% if poem.pagetype == 'submission' %}
+                <div class="tcleft">
+                  <h2 class="tcleft"><a href="{{site.baseurl}}/poems_{{poem.edition}}/{{poem.pid}}">{{poem.transtitle | capitalize}}</a></h2><br>
+                  <h3 class="tcleft">written by {{ poem.author }}<br>translated from {{ poem.language }} by {{ poem.translator }}</h3>
+                </div>
+              {% endif %}
+              {% if poem.pagetype != 'submission' %}
+                <div class="tcleft">
+                  <h2 class="tcleft"><a href="{{site.baseurl}}/poems_{{poem.edition}}/{{poem.pid}}">{{poem.transtitle | capitalize}}</a></h2><br>
+                  {% if poem.author %}
+                    <h3 class="tcleft">by {{ poem.author }}</h3>
+                  {% endif %}
+                </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+<!--          look in the author spreadsheet
+ -->    {% if page.type == "author" or page.type == "translator" %}
+           {% for auth in authors %}
+            {% if auth == page.name %}
+              {% if poem.pagetype == 'submission' %}
+                <div class="tcleft">
+                  <h2 class="tcleft"><a href="{{site.baseurl}}/poems_{{poem.edition}}/{{poem.pid}}">{{poem.transtitle | capitalize}}</a></h2>
+                  <h3 class="tcleft">written by {{ poem.author }}<br>translated from {{ poem.language }} by {{ poem.translator }}</h3>
+                </div>
+              {% endif %}
+              {% if poem.pagetype != 'submission' %}
+                <div class="tcleft">
+                  <h2 class="tcleft"><a href="{{site.baseurl}}/poems_{{poem.edition}}/{{poem.pid}}">{{poem.transtitle | capitalize}}</a></h2><br>
+                  {% if poem.author %}
+                    <h3 class="tcleft">by {{ poem.author }}</h3>
+                  {% endif %}
+                </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+ 
+<!--          look in the translator spreadsheet
+ -->      {% for trans in translators %}
+            {% if trans == page.name %}
+              {% if poem.pagetype == 'submission' %}
+                <div class="tcleft">
+                  <h2 class="tcleft"><a href="{{site.baseurl}}/poems_{{poem.edition}}/{{poem.pid}}">{{poem.transtitle | capitalize}}</a></h2><br>
+                  <h3 class="tcleft">written by {{ poem.author }} <br>translated from {{ poem.language }} by {{ poem.translator }}</h3>
+                </div>
+              {% endif %}
+              {% if poem.pagetype != 'submission' %}
+                <div class="tcleft">
+                  <h2 class="tcleft"><a href="{{site.baseurl}}/poems_{{poem.edition}}/{{poem.pid}}">{{poem.transtitle | capitalize}}</a></h2><br>
+                  {% if poem.author %}
+                    <h3 class="tcleft">by {{ poem.author }}</h3>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+</div>
+
+
+</body>
+  <style>
+.tcontents {
+  background-image: url('{{site.baseurl}}/assets/images/background_logo_ds.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+</style>
+<html>

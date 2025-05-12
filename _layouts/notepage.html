@@ -1,0 +1,202 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/notepagestyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+<body>
+  <div class="bg">
+  {% include navbar.html %}
+
+<div class="poemtags">
+      <ul>
+        <p class="tcontentslink link"><a href="{{site.baseurl}}/toc{{page.edition}}.html"><  &nbsp; table of contents</a></p>
+        {% if page.language and page.language != "English" %}
+          {% assign tags = page.language | split: ';' %}       
+            {% for tag in tags %}
+              <li><a href="{{site.baseurl}}/language_tags/{{tag| slugify: 'latin' | replace: '-','_'}}">{{tag}}</a></li>
+            {% endfor %}
+          {% endif %}
+        {% if page.translator %}
+          {% assign tags = page.translator | split: ';' %}       
+            {% for tag in tags %}
+              <li><a href="{{site.baseurl}}/translator_tags/{{tag| slugify: 'latin' | replace: '-','_'}}">{{tag}}</a></li>
+            {% endfor %}
+          {% endif %}
+        {% if page.author %}
+          {% assign tags = page.author | split: ';' %}       
+            {% for tag in tags %}
+              <li><a href="{{site.baseurl}}/author_tags/{{tag| slugify: 'latin' | replace: '-','_'}}">{{tag}}</a></li>
+            {% endfor %}        
+          {% endif %}
+      </ul>
+    </div>
+  <br>
+
+{% assign path = "poems_" | append: page.edition %}
+
+{% for pg in site.data[path] %}
+
+      {% if pg.pid == page.pid %}
+
+          {% assign nextIndex = forloop.index | plus: 1 %}
+          {% assign thisIndex = forloop.index %}
+        {% endif %}
+      {% assign endLength = forloop.length %}
+
+{% endfor %}
+
+{% for pg in site.data[path] %}
+
+         {% if forloop.index == nextIndex %}
+
+          {% assign nextPage = pg.pid %}
+
+        {% endif %}
+
+{% endfor %}
+
+{% if page.pagetype == "submission" %}
+
+  <title>{{page.translator}} on translating {{page.author}}</title>
+
+<div class='flex-container'>
+  <div class="container">
+    {% if page.note %}
+      <div class="note">
+        <h1>{{page.translator}}</h1><br>
+        <h2 class="note">on translating {{page.author}}</h2><br>
+        <p class="note"> {{page.note}}</p>
+      </div>
+      {% endif %}
+
+    <div class="flex-container">
+
+      <div class="note-text">
+          <div class="abio">
+            {% if page.author contains ";" %}
+              <h1 class="abio">about the authors</h1>
+            {% else %}
+              <h1 class="abio">about the author</h1>
+            {% endif %}
+            <p>{{page.abio}}</p>
+          </div>
+
+          <div class="tbio">
+            {% if page.translator contains ";" %}
+              <h1 class="tbio">about the translators</h1>
+            {% else %}
+              <h1 class="tbio">about the translator</h1>
+            {% endif %}
+            <p>{{page.tbio}}</p>
+        </div>
+    </div>
+      {% if page.image contains "assets" %}
+         <div class="image">
+          {% assign images = page.image | split: '; ' %}       
+            {% for image in images %}
+              <img class="poem-image" src="{{site.baseurl}}{{image}}"></img>
+            {% endfor %}
+        {% if page.imagecredit contains "by"%}
+         <p class="caption"> 
+        {{page.imagecredit}}
+        </p>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% endif %}
+
+{% if page.note and page.pagetype == "interview" or page.pagetype == "musing" %}
+  <div class='flex-container'>
+    <div class="container">
+      {% if page.pagetype == "interview" %}
+        <h1 class="abio" style="width:100%">About the Interviewee</h1>
+      {% endif %}
+      {% if page.pagetype == "musing" %}
+        <h1 class="abio" style="width:100%">About the Muser</h1>
+      {% endif %}
+         <div class="note-text">
+
+          <p>{{page.abio}}</p>
+          </div>
+          {% if page.image contains "assets" and page.pagetype == "interview" %}
+         <div class="image">
+          {% assign images = page.image | split: '; ' %}       
+            {% for image in images %}
+              <img class="poem-image" src="{{site.baseurl}}{{image}}"></img>
+            {% endfor %}
+        {% if page.imagecredit contains "by"%}
+         <p class="caption"> 
+        {{page.imagecredit}}
+        </p>
+        {% endif %}
+      </div>
+      {% endif %}
+        </div>
+      </div>
+{% endif %}
+  </div>
+
+
+<!-- PREVIOUS BUTTON CODE -->  
+
+    <a href="{{site.url}}{{site.baseurl}}/poems_{{page.edition}}/{{page.pid}}"><div class="previouslink">
+      <i class="fa-solid fa-chevron-left" style="font-size:40px;margin-top:40vh; margin-bottom:40vh; color:#A0998D;"></i>  
+    </div></a>
+
+{% if thisIndex == endLength %}
+
+  <a href="{{site.url}}{{site.baseurl}}/frontmatter/copyright{{page.edition}}">
+    <div class="nextlink">
+      <i class="fa-solid fa-chevron-right" style="font-size:40px;margin-top:40vh; margin-bottom:40vh; color:#A0998D;"></i>
+    </div>
+  </a>
+
+{% else %}
+
+<a href="{{site.url}}{{site.baseurl}}/poems_{{page.edition}}/{{nextPage}}"><div class="nextlink">
+  <i class="fa-solid fa-chevron-right" style="font-size:40px;margin-top:40vh; margin-bottom:40vh; color:#A0998D;"></i>
+</div></a>
+
+{% endif %}
+
+  </div>
+</div>
+         </div>
+    <div class="lineart">
+           <img class="line" style="" src="{{site.baseurl}}/assets/images/line 2022.svg"/>
+         </div>
+         </div>
+
+</body>
+<style>
+/*body {
+background-color:#fffdfa;
+background-image: url('{{site.baseurl}}{{page.image}}');
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+
+.bg{
+  background-color:rgba(255,253,250,0.81);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}*/
+
+</style>
+
+
+<html>

@@ -17,11 +17,11 @@
 # Feel free to change these! For more info, refer to:
 # ~> https://jekyllrb.com/docs/configuration/options/
 
-title:            'Wax'
-description:      'Minimal Exhibitions with Jekyll'
-url:              'https://minicomp.github.io'
-baseurl:          '/wax'
-copyright:        'Example copyright org, 2023'
+title:            'DoubleSpeak Magazine'
+description:      'a journal for poetry in translation'
+url:              'https://makeademic.github.io'
+baseurl:          '/my-wax-site'
+copyright:        'Copyright 2017-2025'
 logo:             '/assets/logo.png'
 default_thumb:    '/assets/default.png'
 
@@ -57,15 +57,169 @@ kramdown:
 # ~> https://jekyllrb.com/docs/collections/
 
 collections:
-  exhibits:
-    output: true
-  qatar: # name of collection
-    output: true # makes sure pages are output as html files
-    layout: 'qatar_item' # the layout for the pages to use
+
+  #used to generate the tags for the site
+  author_tags:
+    layout: 'tagpage'
+    output: true # this must be true for your .md pages to be built to html!
     metadata:
-      source: 'qatar.csv' # path to the metadata file within `_data`
+      source: 'authors.csv' # path to the metadata file, must be within '_data'
     images:
-      source: 'raw_images/qatar' # path to the directory of images within `_data`
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  language_tags:
+    layout: 'tagpage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'languages.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  translator_tags:
+    layout: 'tagpage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'translators.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2024:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2024.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2024:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2024.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+
+  poems_2023:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2023.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2023:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2023.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+
+  #used to generate the poem + note pages for each issue/year
+  poems_2022:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2022.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2022:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2022.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2021:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2021.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2021:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2021.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2020:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2020.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2020:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2020.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2019:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2019.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2019:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2019.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2018:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2018.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2018:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2018.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2017:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2017.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2017:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2017.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+
+  poems_2016:
+    layout: 'poempage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2016.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
+  notes_2016:
+    layout: 'notepage'
+    output: true # this must be true for your .md pages to be built to html!
+    metadata:
+      source: 'poems_2016.csv' # path to the metadata file, must be within '_data'
+    images:
+      source: 'source_images/objects' # path to the directory of source images, must be within '_data'
 
 # --------------------------------------------------------------
 # SEARCH INDEX SETTINGS
@@ -79,16 +233,96 @@ search:
   main:
     index: '/search/index.json' # file the index will get written to
     collections:
-      qatar:
-        content: false # whether or not to index page content
+      poems_2024:
+        content: true # whether or not to index page content
         fields: # the metadata fields to index
-          - artist
-          - location
-          - label
-          - _date
-          - object_type
-          - current_location
-
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2023:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2022:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2021:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2020:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2019:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2018:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2017:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
+      poems_2016:
+        content: true # whether or not to index page content
+        fields: # the metadata fields to index
+          - transtitle
+          - title
+          - author
+          - translator
+          - poem
+          - transpoem
+          - language
 # --------------------------------------------------------------
 # SITE MENU SETTINGS
 # --------------------------------------------------------------
@@ -98,25 +332,11 @@ search:
 
 menu:
   - label: 'About'
-    sub:
-      - label: 'Wax'
-        link: '/about/'
-      - label: 'Documentation'
-        link: 'https://minicomp.github.io/wiki/wax/'
-      - label: 'Credits'
-        link: '/credits/'
-  - label: 'Exhibits'
-    sub:
-      - label: 'Inline Parallax Image'
-        link: '/exhibits/a/'
-      - label: 'Inline Image References'
-        link: '/exhibits/b/'
-  - label: 'Browse'
-    link: '/collection/'
+    link: '/about/'
+  - label: 'issues'
+    link: '/issues/'
   - label: 'Search'
     link: '/search/'
-  - label: 'Reuse'
-    link: '/reuse/'
 
 # --------------------------------------------------------------
 # SITE FOOTER SETTINGS
