@@ -5,3 +5,5 @@ permalink: /search/
 ---
 
 {% include search_box.html search='main' %}
+
+{% include search-form.html %}
